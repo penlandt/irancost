@@ -1,0 +1,25 @@
+{
+  "model_version": "1.0",
+  "war_start_timestamp": "2026-02-28T06:15:00Z",
+  "phase_1_end_timestamp": "2026-03-06T06:15:00Z",
+  "initial_strike_baseline_usd": 11300000000,
+  "phase_1_duration_days": 6,
+  "daily_burn_rate_usd": 1000000000,
+  "per_second_burn_rate_usd": 11574.074,
+  "taxpayer_count": 144800000,
+  "estimate_range_low_usd": 18000000000,
+  "estimate_range_high_usd": 25000000000,
+  "methodology_last_updated": "2026-03-16",
+  "estimate_scope": "Direct operational spending only",
+  "exclusions": [
+    "Long-term veteran care and disability payments",
+    "Reconstruction costs",
+    "Macroeconomic effects",
+    "Interest on government borrowing"
+  ],
+  "primary_sources": [
+    "Pentagon briefing to Congress, March 11, 2026",
+    "CSIS analysis of first 100 hours",
+    "Brown University Costs of War Project"
+  ]
+}
