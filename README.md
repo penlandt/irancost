@@ -33,7 +33,21 @@ This repository is intended to let outside readers — journalists, researchers,
 This project provides a modeled estimate based on publicly reported defense spending figures and a simplified operational cost model. It is not an official government accounting, and actual wartime expenditures may differ as additional information becomes available.
 
 ## Maintenance / Scheduled Tasks
-(To be updated as scheduled tasks are added)
+
+### archive:snapshots
+Pings the Internet Archive Save Page Now API to request archival of the homepage and methodology page.
+
+Run manually:
+```
+php artisan archive:snapshots
+```
+
+To automate, add to your server's crontab:
+```
+0 */12 * * * cd /path/to/irancost && php artisan archive:snapshots >> /dev/null 2>&1
+```
+
+This preserves verifiable historical copies of the site independent of the live model.
 
 ## License
 License information to be added.
