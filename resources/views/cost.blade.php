@@ -51,84 +51,17 @@
       "license": "https://creativecommons.org/licenses/by/4.0/"
     }
     </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/app.css">
     <style>
-        :root {
-            --bg: #0a0a08;
-            --white: #f0f0f0;
-            --gray: #e8e0d0;
-            --red: #c0392b;
-            --border: #2a2a28;
-            --box-bg: #111110;
-            --label: #cccccc;
-            --label-dim: #aaaaaa;
-        }
-
-        *, *::before, *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background: var(--bg);
-            color: var(--white);
-            font-family: 'DM Mono', monospace;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        /* Grain texture overlay */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.04;
-            pointer-events: none;
-            z-index: 1;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-            background-repeat: repeat;
-            background-size: 256px 256px;
-        }
-
-        /* Radial vignette */
-        body::after {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.6) 100%);
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .content {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            padding: 2rem 1rem;
-            max-width: 900px;
-            width: 100%;
-        }
+        body { justify-content: center; }
+        .content { text-align: center; padding: 2rem 1rem 50vh; max-width: 900px; }
 
         /* News ticker */
         .ticker-wrap {
             width: 100%;
             overflow: hidden;
-            border-top: 1px solid rgba(255,255,255,0.08);
-            border-bottom: 1px solid rgba(255,255,255,0.08);
+            border-top: 1px solid var(--ticker-border);
+            border-bottom: 1px solid var(--ticker-border);
             background: var(--box-bg);
             display: flex;
             align-items: center;
@@ -143,7 +76,7 @@
             letter-spacing: 0.15em;
             text-transform: uppercase;
             color: var(--red);
-            border-right: 1px solid rgba(255,255,255,0.08);
+            border-right: 1px solid var(--ticker-border);
         }
 
         .ticker-track {
@@ -167,11 +100,11 @@
             font-size: 0.6rem;
             letter-spacing: 0.05em;
             text-transform: uppercase;
-            color: #e8e0d0;
+            color: var(--gray);
         }
 
         .ticker-content a {
-            color: #e8e0d0;
+            color: var(--gray);
             text-decoration: none;
         }
 
@@ -182,7 +115,7 @@
 
         .ticker-bullet {
             color: var(--red);
-            padding: 0 0.75rem;
+            padding: 0 5rem;
         }
 
         @keyframes ticker-scroll {
@@ -199,7 +132,7 @@
             font-weight: 500;
             letter-spacing: 0.2em;
             text-transform: uppercase;
-            color: #e8e0d0;
+            color: var(--gray);
             margin-bottom: 2.5rem;
             text-shadow: 0 0 20px rgba(192, 57, 43, 0.4);
         }
@@ -220,7 +153,7 @@
             font-family: 'DM Mono', monospace;
             font-size: 1.1rem;
             letter-spacing: 0.2em;
-            color: #aaaaaa;
+            color: var(--label-dim);
             padding: 10px 0 6px;
             text-transform: uppercase;
         }
@@ -246,12 +179,12 @@
         .per-taxpayer-value {
             font-size: clamp(0.9rem, 3vw, 2.25rem);
             font-weight: 500;
-            color: #e8e0d0;
+            color: var(--gray);
             white-space: nowrap;
         }
 
         .per-taxpayer-value .tick-digits {
-            color: #bbbbbb;
+            color: var(--label-mid);
         }
 
         .per-taxpayer-label {
@@ -335,7 +268,7 @@
             max-width: 380px;
             margin: 1.5rem auto 0;
             padding: 0.75rem 1rem;
-            background: rgba(255,255,255,0.03);
+            background: var(--box-tint);
             border: 1px solid var(--border);
             border-radius: 4px;
         }
@@ -478,12 +411,12 @@
         .casualty-value {
             font-size: 1.25rem;
             font-weight: 500;
-            color: #922b21;
+            color: var(--chart-label-dark);
         }
 
         .casualty-detail {
             font-size: 0.7rem;
-            color: #922b21;
+            color: var(--chart-label-dark);
             margin-top: 0.25rem;
         }
 
@@ -573,7 +506,7 @@
             max-width: 620px;
             margin: 0 auto 2.5rem;
             padding: 1rem 1.25rem;
-            background: rgba(255,255,255,0.03);
+            background: var(--box-tint);
             border: 1px solid var(--border);
             border-radius: 4px;
         }
@@ -682,39 +615,6 @@
             margin-top: 0.25rem;
         }
 
-        .methodology-cta {
-            max-width: 600px;
-            margin: 0 auto 4rem;
-            text-align: center;
-        }
-
-        .methodology-cta p {
-            font-size: 0.7rem;
-            line-height: 1.8;
-            color: var(--label);
-            margin-bottom: 0.75rem;
-        }
-
-        .methodology-cta a {
-            display: inline-block;
-            padding: 0.5rem 1.2rem;
-            font-family: 'DM Mono', monospace;
-            font-size: 0.65rem;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            text-decoration: none;
-            color: var(--gray);
-            border: 1px solid var(--border);
-            border-radius: 4px;
-            background: var(--box-bg);
-            transition: border-color 0.2s, color 0.2s;
-        }
-
-        .methodology-cta a:hover {
-            color: var(--white);
-            border-color: var(--gray);
-        }
-
         /* Sources */
         .sources {
             max-width: 600px;
@@ -772,38 +672,6 @@
             fill: currentColor;
         }
 
-        .disclaimer {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            text-align: center;
-            padding: 0.75rem 1rem 0.5rem;
-            font-size: 0.55rem;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--label-dim);
-            background: linear-gradient(to top, var(--bg) 60%, transparent);
-            z-index: 3;
-        }
-
-        .credit {
-            text-align: center;
-            font-size: 0.55rem;
-            letter-spacing: 0.08em;
-            color: var(--label-dim);
-            padding-bottom: 0.5rem;
-        }
-
-        .credit a {
-            color: var(--gray);
-            text-decoration: none;
-        }
-
-        .credit a:hover {
-            color: var(--white);
-        }
-
         @media (max-width: 600px) {
             .elapsed-row, .stats-row, .casualties-row, .gas-row {
                 flex-wrap: wrap;
@@ -853,71 +721,22 @@
 </head>
 <body>
     <div class="content">
+
+        {{-- ─── ABOVE THE FOLD ─── --}}
+
         <div class="live-indicator">
             <span class="live-dot">&#9679;</span>
             OPERATION EPIC FURY &middot; LIVE
         </div>
         <div class="site-title">Iran War Cost Tracker</div>
-        <div class="site-intro">
-            <p>IranCost.com tracks the estimated cost of the U.S. war with Iran in real time. The counter uses publicly reported Pentagon spending rates, operational cost estimates, and historical comparisons with previous U.S. conflicts. This tracker estimates the direct operational cost to the United States government of the war with Iran based on publicly reported defense spending estimates.</p>
-            <p>The tracker converts the total cost into everyday equivalents such as infrastructure repairs, school funding, and healthcare spending to illustrate the opportunity cost of the war. The counter uses the Pentagon's reported $11.3 billion cost for the first six days of the war combined with an estimated ongoing operational burn rate of roughly $1 billion per day.</p>
-        </div>
-
-        <div class="ticker-wrap">
-            <div class="ticker-label">News</div>
-            <div class="ticker-track">
-                <div class="ticker-content">
-                    @if(count($headlines) > 0)
-                        @foreach($headlines as $i => $headline)
-                            @if($i > 0)<span class="ticker-bullet">&#9679;</span>@endif
-                            <a href="{{ $headline['link'] }}" target="_blank" rel="noopener noreferrer">{{ $headline['title'] }}</a>
-                        @endforeach
-                        <span class="ticker-bullet">&#9679;</span>
-                        @foreach($headlines as $i => $headline)
-                            @if($i > 0)<span class="ticker-bullet">&#9679;</span>@endif
-                            <a href="{{ $headline['link'] }}" target="_blank" rel="noopener noreferrer">{{ $headline['title'] }}</a>
-                        @endforeach
-                        <span class="ticker-bullet">&#9679;</span>
-                    @else
-                        <span>LATEST NEWS UNAVAILABLE</span>
-                    @endif
-                </div>
-            </div>
-        </div>
+        <p class="counter-explainer">Estimated direct operational cost to U.S. taxpayers since the start of the war with Iran.</p>
 
         <div class="counter-wrap">
             <div class="counter-label">Estimated Cost to U.S. Taxpayers</div>
             <div class="counter" id="counter">
                 <span class="dollar">$</span>0
             </div>
-            <div class="cost-range">Estimated range based on published burn-rate estimates: $18B – $25B</div>
-            <div class="model-info">
-                <span>Model version:</span> 1.0<br>
-                <span>Daily cost assumption:</span> approximately $1 billion per day<br>
-                <span>Initial strike baseline:</span> $11.3 billion during the first six days of the conflict (Pentagon briefing to Congress)<br>
-                <span>Methodology last updated:</span> March 16, 2026
-            </div>
-            <div class="model-update-note">The counter updates continuously using the cost model described in the <a href="/methodology" style="color:var(--gray);text-decoration:underline;">methodology</a>.</div>
             <div class="snapshot-notice" id="snapshot-notice"></div>
-            <div class="key-figures">
-                <div class="key-figures-heading">Key Figures</div>
-                <div class="key-figures-row">
-                    <span class="key-figures-label">War start</span>
-                    <span class="key-figures-value">Feb 28, 2026 – 1:15 AM ET</span>
-                </div>
-                <div class="key-figures-row">
-                    <span class="key-figures-label">Initial strike cost</span>
-                    <span class="key-figures-value">$11.3B</span>
-                </div>
-                <div class="key-figures-row">
-                    <span class="key-figures-label">Estimated ongoing cost</span>
-                    <span class="key-figures-value">~$1B/day</span>
-                </div>
-                <div class="key-figures-row">
-                    <span class="key-figures-label">Current estimate</span>
-                    <span class="key-figures-value" id="key-figures-current">$0.0B</span>
-                </div>
-            </div>
         </div>
 
         <div class="per-taxpayer-wrap">
@@ -947,6 +766,25 @@
             </div>
         </div>
 
+        <div class="stats-row">
+            <div class="stat-box">
+                <div class="stat-value" id="st-sec">$0</div>
+                <div class="stat-label">Per Second</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value" id="st-min">$0</div>
+                <div class="stat-label">Per Minute</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value" id="st-hr">$0</div>
+                <div class="stat-label">Per Hour</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value" id="st-day">$0</div>
+                <div class="stat-label">Per Day</div>
+            </div>
+        </div>
+
         <div class="casualties-section">
             <div class="casualties-row">
                 <div class="casualty-box">
@@ -966,36 +804,6 @@
                 </div>
             </div>
             <div class="casualties-note">Casualty figures are manually updated. Sources: <a href="https://www.centcom.mil" target="_blank" rel="noopener noreferrer">CENTCOM</a>, <a href="https://www.en.ircs.ir" target="_blank" rel="noopener noreferrer">Iranian Red Crescent</a>, <a href="https://www.idf.il/en/" target="_blank" rel="noopener noreferrer">IDF</a>. Last updated: {{ $casualties_updated }}</div>
-        </div>
-
-        @php
-            $gasBefore = $casualties['gas_price_before'] ?? 2.98;
-            $gasCurrent = $casualties['gas_price_current'] ?? 3.54;
-            $gasIncrease = $gasCurrent - $gasBefore;
-            $gasPercent = $gasBefore > 0 ? ($gasIncrease / $gasBefore) * 100 : 0;
-        @endphp
-        <div class="gas-section">
-            <div class="counter-label" style="margin-bottom:1rem;">Impact on Gas Prices</div>
-            <div class="gas-row">
-                <div class="gas-box">
-                    <div class="gas-value">${{ number_format($gasBefore, 2) }}/gal</div>
-                    <div class="gas-label">Before the War (Feb 27, 2026)</div>
-                </div>
-                <div class="gas-box">
-                    <div class="gas-value">${{ number_format($gasCurrent, 2) }}/gal <span class="gas-arrow">&uarr;</span></div>
-                    <div class="gas-label">Today</div>
-                </div>
-                <div class="gas-box">
-                    <div class="gas-value"><span class="gas-change">+${{ number_format($gasIncrease, 2) }}/gal (+{{ number_format($gasPercent, 1) }}%)</span></div>
-                    <div class="gas-label">Increase</div>
-                </div>
-            </div>
-            <div class="gas-note"><a href="https://gasprices.aaa.com" target="_blank" rel="noopener noreferrer">Source: AAA</a> &middot; Last updated: {{ $gas_updated }}</div>
-        </div>
-
-        <div class="estimate-summary">
-            <div class="estimate-summary-heading">How this estimate is calculated</div>
-            <p>The tracker combines the Pentagon's reported $11.3B cost for the first six days of the conflict with an estimated ongoing operational burn rate of about $1B per day derived from defense-analysis estimates. The total increases continuously based on the elapsed time since the start of the conflict.</p>
         </div>
 
         <div class="opportunity-section">
@@ -1050,10 +858,37 @@
             <div class="opportunity-note">Figures update in real time based on the running cost estimate.</div>
         </div>
 
+        {{-- ─── BELOW THE FOLD ─── --}}
+
         <div style="text-align:center; margin:2rem 0;">
             <a href="https://whatcouldwefund.com" target="_blank" rel="noopener noreferrer">
                 <img src="/images/what-could-we-fund-social-share.png" alt="What Could We Fund?" style="max-width:100%; height:auto;">
             </a>
+        </div>
+
+        @php
+            $gasBefore = $casualties['gas_price_before'] ?? 2.98;
+            $gasCurrent = $casualties['gas_price_current'] ?? 3.54;
+            $gasIncrease = $gasCurrent - $gasBefore;
+            $gasPercent = $gasBefore > 0 ? ($gasIncrease / $gasBefore) * 100 : 0;
+        @endphp
+        <div class="gas-section">
+            <div class="counter-label" style="margin-bottom:1rem;">Impact on Gas Prices</div>
+            <div class="gas-row">
+                <div class="gas-box">
+                    <div class="gas-value">${{ number_format($gasBefore, 2) }}/gal</div>
+                    <div class="gas-label">Before the War (Feb 27, 2026)</div>
+                </div>
+                <div class="gas-box">
+                    <div class="gas-value">${{ number_format($gasCurrent, 2) }}/gal <span class="gas-arrow">&uarr;</span></div>
+                    <div class="gas-label">Today</div>
+                </div>
+                <div class="gas-box">
+                    <div class="gas-value"><span class="gas-change">+${{ number_format($gasIncrease, 2) }}/gal (+{{ number_format($gasPercent, 1) }}%)</span></div>
+                    <div class="gas-label">Increase</div>
+                </div>
+            </div>
+            <div class="gas-note"><a href="https://gasprices.aaa.com" target="_blank" rel="noopener noreferrer">Source: AAA</a> &middot; Last updated: {{ $gas_updated }}</div>
         </div>
 
         <div class="chart-section">
@@ -1063,37 +898,93 @@
             </div>
         </div>
 
-        <div class="stats-row">
-            <div class="stat-box">
-                <div class="stat-value" id="st-sec">$0</div>
-                <div class="stat-label">Per Second</div>
-            </div>
-            <div class="stat-box">
-                <div class="stat-value" id="st-min">$0</div>
-                <div class="stat-label">Per Minute</div>
-            </div>
-            <div class="stat-box">
-                <div class="stat-value" id="st-hr">$0</div>
-                <div class="stat-label">Per Hour</div>
-            </div>
-            <div class="stat-box">
-                <div class="stat-value" id="st-day">$0</div>
-                <div class="stat-label">Per Day</div>
+        <div class="section-label">Latest War Updates</div>
+        <div class="ticker-wrap">
+            <div class="ticker-label">News</div>
+            <div class="ticker-track">
+                <div class="ticker-content">
+                    @if(count($headlines) > 0)
+                        @foreach($headlines as $i => $headline)
+                            @if($i > 0)<span class="ticker-bullet">|</span>@endif
+                            <a href="{{ $headline['link'] }}" target="_blank" rel="noopener noreferrer">{{ $headline['title'] }}</a>
+                        @endforeach
+                        <span class="ticker-bullet">|</span>
+                        @foreach($headlines as $i => $headline)
+                            @if($i > 0)<span class="ticker-bullet">|</span>@endif
+                            <a href="{{ $headline['link'] }}" target="_blank" rel="noopener noreferrer">{{ $headline['title'] }}</a>
+                        @endforeach
+                        <span class="ticker-bullet">|</span>
+                    @else
+                        <span>LATEST NEWS UNAVAILABLE</span>
+                    @endif
+                </div>
             </div>
         </div>
 
-        <div class="methodology-cta">
-            <p>Learn how we collect data, calculate costs, and what the limitations of this tool are.</p>
-            <a href="/methodology">View Methodology</a>
-        </div>
+        {{-- ─── ABOUT THIS TRACKER ─── --}}
 
-        <div class="sources">
-            Sources: <a href="https://www.csis.org/analysis/37-billion-estimated-cost-epic-furys-first-100-hours" target="_blank" rel="noopener noreferrer">CSIS</a> — $3.7B estimated cost in first 100 hours &middot;
-            <a href="https://thehill.com/homenews/5780153-operation-epic-fury-cost/" target="_blank" rel="noopener noreferrer">Pentagon briefing to Congress, March 11, 2026</a> &middot;
-            <a href="https://costsofwar.watson.brown.edu/" target="_blank" rel="noopener noreferrer">Brown University Costs of War</a> — $31–34B projected total &middot;
-            War start: 1:15 AM ET, Feb. 28, 2026 — <a href="https://www.army.mil/article/290823/hegseth_says_epic_fury_goals_in_iran_are_laser_focused" target="_blank" rel="noopener">U.S. CENTCOM via Army.mil</a> &middot;
-            <a href="https://github.com/penlandt/irancost" target="_blank" rel="noopener noreferrer">Audit the model and data on GitHub</a>
-        </div>
+        <details class="about-tracker">
+            <summary>About This Tracker</summary>
+            <p>IranCost.com tracks the estimated cost of the U.S. war with Iran in real time. The counter uses publicly reported Pentagon spending rates, operational cost estimates, and historical comparisons with previous U.S. conflicts. This tracker estimates the direct operational cost to the United States government of the war with Iran based on publicly reported defense spending estimates.</p>
+            <p>The tracker converts the total cost into everyday equivalents such as infrastructure repairs, school funding, and healthcare spending to illustrate the opportunity cost of the war. The counter uses the Pentagon's reported $11.3 billion cost for the first six days of the war combined with an estimated ongoing operational burn rate of roughly $1 billion per day.</p>
+        </details>
+
+        {{-- ─── HOW THE TRACKER WORKS ─── --}}
+
+
+
+        <details class="info-block">
+            <summary>How the Estimate Is Calculated</summary>
+            <div class="estimate-summary">
+                <div class="estimate-summary-heading">How this estimate is calculated</div>
+                <p>The tracker combines the Pentagon's reported $11.3B cost for the first six days of the conflict with an estimated ongoing operational burn rate of about $1B per day derived from defense-analysis estimates. The total increases continuously based on the elapsed time since the start of the conflict.</p>
+            </div>
+            <div class="cost-range">Estimated range based on published burn-rate estimates: $18B – $25B</div>
+            <div class="model-info">
+                <span>Model version:</span> 1.0<br>
+                <span>Daily cost assumption:</span> approximately $1 billion per day<br>
+                <span>Initial strike baseline:</span> $11.3 billion during the first six days of the conflict (Pentagon briefing to Congress)<br>
+                <span>Methodology last updated:</span> March 16, 2026
+            </div>
+            <div class="model-update-note">The counter updates continuously using the cost model described in the <a href="/methodology" style="color:var(--gray);text-decoration:underline;">methodology</a>.</div>
+        </details>
+
+        <details class="info-block">
+            <summary>Key Figures</summary>
+            <div class="key-figures">
+                <div class="key-figures-heading">Key Figures</div>
+                <div class="key-figures-row">
+                    <span class="key-figures-label">War start</span>
+                    <span class="key-figures-value">Feb 28, 2026 – 1:15 AM ET</span>
+                </div>
+                <div class="key-figures-row">
+                    <span class="key-figures-label">Initial strike cost</span>
+                    <span class="key-figures-value">$11.3B</span>
+                </div>
+                <div class="key-figures-row">
+                    <span class="key-figures-label">Estimated ongoing cost</span>
+                    <span class="key-figures-value">~$1B/day</span>
+                </div>
+                <div class="key-figures-row">
+                    <span class="key-figures-label">Current estimate</span>
+                    <span class="key-figures-value" id="key-figures-current">$0.0B</span>
+                </div>
+            </div>
+        </details>
+
+        <details class="info-block">
+            <summary>Sources</summary>
+            <div class="sources">
+                Sources: <a href="https://www.csis.org/analysis/37-billion-estimated-cost-epic-furys-first-100-hours" target="_blank" rel="noopener noreferrer">CSIS</a> — $3.7B estimated cost in first 100 hours &middot;
+                <a href="https://thehill.com/homenews/5780153-operation-epic-fury-cost/" target="_blank" rel="noopener noreferrer">Pentagon briefing to Congress, March 11, 2026</a> &middot;
+                <a href="https://costsofwar.watson.brown.edu/" target="_blank" rel="noopener noreferrer">Brown University Costs of War</a> — $31–34B projected total &middot;
+                War start: 1:15 AM ET, Feb. 28, 2026 — <a href="https://www.army.mil/article/290823/hegseth_says_epic_fury_goals_in_iran_are_laser_focused" target="_blank" rel="noopener">U.S. CENTCOM via Army.mil</a> &middot;
+                <a href="https://github.com/penlandt/irancost" target="_blank" rel="noopener noreferrer">Audit the model and data on GitHub</a>
+            </div>
+            <p class="methodology-link-footer">
+                <a href="/methodology">View full methodology &rarr;</a>
+            </p>
+        </details>
     </div>
 
     <div class="disclaimer">
@@ -1315,6 +1206,15 @@
                 data.push(+(cost / 1e9).toFixed(2));
             }
 
+            var cs = getComputedStyle(document.documentElement);
+            var chartRed      = cs.getPropertyValue('--red').trim();
+            var chartBg       = cs.getPropertyValue('--box-bg').trim();
+            var chartWhite    = cs.getPropertyValue('--white').trim();
+            var chartGray     = cs.getPropertyValue('--gray').trim();
+            var chartBorder   = cs.getPropertyValue('--border').trim();
+            var chartLabelDim = cs.getPropertyValue('--label-dim').trim();
+            var chartGrid     = cs.getPropertyValue('--chart-grid').trim();
+
             var ctx = document.getElementById('cost-chart').getContext('2d');
             new Chart(ctx, {
                 type: 'line',
@@ -1323,12 +1223,12 @@
                     datasets: [{
                         label: 'Estimated Cost ($B)',
                         data: data,
-                        borderColor: '#c0392b',
-                        backgroundColor: 'rgba(192, 57, 43, 0.1)',
+                        borderColor: chartRed,
+                        backgroundColor: chartRed + '1a',
                         borderWidth: 2,
                         pointRadius: 3,
-                        pointBackgroundColor: '#c0392b',
-                        pointBorderColor: '#c0392b',
+                        pointBackgroundColor: chartRed,
+                        pointBorderColor: chartRed,
                         fill: true,
                         tension: 0.1
                     }]
@@ -1342,10 +1242,10 @@
                             display: false
                         },
                         tooltip: {
-                            backgroundColor: '#111110',
-                            titleColor: '#f0f0f0',
-                            bodyColor: '#e8e0d0',
-                            borderColor: '#2a2a28',
+                            backgroundColor: chartBg,
+                            titleColor: chartWhite,
+                            bodyColor: chartGray,
+                            borderColor: chartBorder,
                             borderWidth: 1,
                             callbacks: {
                                 label: function (context) {
@@ -1357,32 +1257,32 @@
                     scales: {
                         x: {
                             ticks: {
-                                color: '#aaaaaa',
+                                color: chartLabelDim,
                                 font: { family: "'DM Mono', monospace", size: 10 },
                                 maxRotation: 0,
                                 autoSkip: true,
                                 maxTicksLimit: 10
                             },
                             grid: {
-                                color: 'rgba(255,255,255,0.05)'
+                                color: chartGrid
                             },
                             border: {
-                                color: '#2a2a28'
+                                color: chartBorder
                             }
                         },
                         y: {
                             ticks: {
-                                color: '#aaaaaa',
+                                color: chartLabelDim,
                                 font: { family: "'DM Mono', monospace", size: 10 },
                                 callback: function (value) {
                                     return '$' + value + 'B';
                                 }
                             },
                             grid: {
-                                color: 'rgba(255,255,255,0.05)'
+                                color: chartGrid
                             },
                             border: {
-                                color: '#2a2a28'
+                                color: chartBorder
                             },
                             beginAtZero: true
                         }

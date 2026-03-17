@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 /**
  * Ping the Internet Archive "Save Page Now" API to request archival
@@ -60,13 +61,16 @@ class ArchiveSnapshots extends Command
 
             if ($response->successful()) {
                 $this->info("Archived successfully: {$url}");
+                Log::info("[ArchiveSnapshots] Archived successfully: {$url}");
             } else {
                 $this->warn("Archive request returned HTTP {$response->status()} for: {$url}");
+                Log::warning("[ArchiveSnapshots] Archive request returned HTTP {$response->status()} for: {$url}");
             }
         } catch (\Exception $e) {
             // Log the failure but do not re-throw. The live site must never
             // be affected by a problem with the Internet Archive.
             $this->error("Archive request failed for {$url}: {$e->getMessage()}");
+            Log::error("[ArchiveSnapshots] Archive request failed for {$url}: {$e->getMessage()}");
         }
     }
 }
